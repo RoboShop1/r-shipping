@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: catalogue
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: .
+    repoURL: https://github.com/RoboShop1/r-helm.git
+    targetRevision: main
+    helm:
+      releaseName: catalogue
+      valueFiles:
+        - env-dev/catalogue.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
