@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: catalogue
+  name: shipping
   namespace: argocd
 spec:
   project: default
@@ -10,9 +10,9 @@ spec:
     repoURL: https://github.com/RoboShop1/r-helm.git
     targetRevision: main
     helm:
-      releaseName: catalogue
+      releaseName: shipping
       valueFiles:
-        - env-dev/catalogue.yaml
+        - env-dev/shipping.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: dev
